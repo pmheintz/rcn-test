@@ -1,0 +1,14 @@
+body {
+    font-family: 'ZCOOL XiaoWei', serif;
+}
+nav .brand-logo {
+    color: indigo;
+    text-shadow: 1px 1px 5px gold;
+}
+.campaign, .character, .player {
+    width: initial;
+}
+.campaign h5, .character h5, .player h5 {
+    color: navy;
+    text-shadow: 1px 1px 5px darkgrey;
+}

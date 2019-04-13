@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- favorite icon -->
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+    <title>Roleplayer Character Nexus</title>
+    <style>
+      body {
+        font-family: 'ZCOOL XiaoWei', serif;
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+      }
+      main {
+        flex: 1 0 auto;
+      }
+      h5, h6 {
+        text-shadow: 1px 1px 3px white;
+      }
+    </style>
+
+  </head>
+
+  <body class="grey">
+
+    <main>
+      <div class="container center">
+        <img src="" alt="" style="width: 250px;" class="responsive-img">
+        <h5 class="deep-purple-text text-darken-4">Welcome to the<br />Roleplayer Character Nexus!</h5>
+        <h6 class="deep-purple-text text-darken-4">Please login to your account.</h6>
+        <br />
+        <div class="row">
+          <div class="col s12">
+            <div class="z-depth-2" style="background: #eeeeee">
+              <div class="container">
+                <form id="login-form">
+                  <br />
+                  <div class="input-field">
+                    <i class="material-icons prefix deep-purple-text text-darken-4">email</i>
+                    <input type="email" id="email" required>
+                    <label for="email">Your Email</label>
+                  </div>
+                  <div class="input-field">
+                    <i class="material-icons prefix deep-purple-text text-darken-4">lock</i>
+                    <input type="password" id="password" required>
+                    <label for="password">Password</label>
+                  </div>
+                  <div class="pink-text"><p id="error"></p></div>
+                  <div class="input-field center">
+                    <button class="btn deep-purple darken-4 waves-effect waves-light">Login</button>
+                  </div>
+                  <br />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Firebase Modules -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-storage.js"></script>
+    <script src="init.js"></script>
+    <script src="scripts/login.js"></script>
+
+  </body>
+</html>

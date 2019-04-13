@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Google material icons-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Default font -->
+    <link href="https://fonts.googleapis.com/css?family=ZCOOL+XiaoWei" rel="stylesheet">
+    <!-- favorite icon -->
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <style>
+        body {
+            font-family: 'ZCOOL XiaoWei';
+        }
+    </style>
+    <title>Update Account Information</title>
+</head>
+<body class="grey lighten-3" id="main-body" style="display: none;">
+
+    <!-- Navbar -->
+    <nav class="nav-wrapper z-depth-1 grey lighten-3">
+        <div class="container">
+            <a href="" class="brand-logo">
+                <img src="img/logo.png" alt="RCN logo" class="responsive-img" style="height: 1.8em;">
+            </a>
+            <a href="#" class="sidenav-trigger" data-target="mobile-links">
+                <i class="material-icons deep-purple-text text-darken-4">menu</i>
+            </a>
+            <ul class="right hide-on-med-and-down" id="nav-mobile">
+                <li class="logged-in" style="display: block;">
+                    <a href="main.html" class="deep-purple-text text-darken-4">Home</a>
+                </li>
+                <li class="logged-in" style="display: block;">
+                    <a href="#" class="deep-purple-text text-darken-4" id="logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile links -->
+    <ul class="sidenav" id="mobile-links">
+        <li class="logged-in" style="display: block;">
+            <a href="main.html" class="deep-purple-text text-darken-4">Home</a>
+        </li>
+        <li class="logged-in" style="display: block;">
+            <a href="#" class="deep-purple-text text-darken-4" id="logout-side">Logout</a>
+        </li>
+    </ul>
+
+    <!-- Account Form -->
+    <section class="section container">
+        <div class="row">
+            <div class="col s12">
+                <form action="">
+                    <div class="input-field">
+                        <i class="material-icons prefix deep-purple-text text-darken-4">email</i>
+                        <input type="email" id="email">
+                        <label for="email" id="email-lbl">Your Email</label>
+                    </div>
+                    <div class="input-field">
+                        <i class="material-icons prefix deep-purple-text text-darken-4">account_circle</i>
+                        <input type="text" id="name">
+                        <label for="name" id="name-lbl">Display Name (your real name)</label>
+                    </div>
+                    <div class="file-field input-field">
+                        <div class="btn deep-purple darken-4">
+                            <span>File</span>
+                            <input type="file" id="file-button">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" id="photo" placeholder="Upload new profile image" type="text">
+                        </div>
+                        <br />
+                        <div id="upload-status" style="display: none;">
+                            <div class="progress deep-purple lighten-4">
+                                <div class="determinate deep-purple darken-4" id="uploader" style="width: 0%"></div>
+                            </div>
+                            <div class="center red-text" id="num-percent">0%</div>
+                        </div>
+                    </div>
+                    <div class="right-align">
+                        <button class="btn red darken-4 z-depth-0" id="cancel-acct">Cancel</button>
+                        <button class="btn deep-purple darken-4 z-depth-0" id="update-acct">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Firebase Modules -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-storage.js"></script>
+    <script src="init.js"></script>
+    <script src="scripts/auth.js"></script>
+    <!-- Page scripts -->
+    <script src="scripts/updateAcct.js"></script>
+    
+</body>
+</html>

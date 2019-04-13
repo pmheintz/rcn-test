@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Default font -->
+    <link href="https://fonts.googleapis.com/css?family=ZCOOL+XiaoWei" rel="stylesheet">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <!-- Google icon font -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- favorite icon -->
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+    <title>Roleplayer Character Nexus</title>
+  </head>
+
+    <body class="grey lighten-3" style="display: none;" id="main-body">
+        <!-- Navbar -->
+        <header>
+            <nav class="wrapper transparent">
+                <div class="container">
+                    <a href="#" class="brand-logo"><img src="img/logo.png" style="max-height: 1.9em;"></a>
+                <ul>
+                    <li class="logged-in">
+                        <a href="#" class="deep-purple-text darken-4" id="logout">Logout</a>
+                    </li>
+                </ul>
+                </div>
+            </nav>
+        </header>
+
+        <br />
+
+        <main class="container">
+            <div class="row">
+
+                <!-- Campaign section -->
+                <div class="col s12 m6 l4">
+                    <div class="container campaign">
+                        <h5 class="center-align">My<br />Campaigns</h5>
+
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="img/eldritch.jpg" alt="background">
+                                <a class="halfway-fab btn-floating pink waves-dark">
+                                    <i class="material-icons">mode_edit</i>
+                                </a>
+                            </div>
+                            <div class="card-content deep-purple-text text-darken-4">
+                                <span class="card-title">Eldritch Horror</span>
+                                <p>You are in the Greyhawk D&D world. There are two moons that populate the night sky. The world runs on a 7 day a week and a 28 day lunar month.</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">Open Campaign</a>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="img/no-img.png" alt="background">
+                                <a class="halfway-fab btn-floating pink waves-dark">
+                                    <i class="material-icons">mode_edit</i>
+                                </a>
+                            </div>
+                            <div class="card-content deep-purple-text text-darken-4">
+                                <span class="card-title">Generic Placeholder Campaign</span>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis dolor sed purus maximus, eget pharetra neque luctus. Morbi at pulvinar neque. Donec sit amet varius ex, et blandit lectus.</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">Open Campaign</a>
+                            </div>
+                        </div>
+
+                        <a href="c-campaign.html">
+                        <div class="card">
+                            <div class="card-content deep-purple-text text-darken-4">
+                                <span class="card-title">Create Campaign</span>
+                                <p>Click to create a new campaign!</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">Create Campaign</a>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- Character section -->
+                <div class="col s12 m6 l4">
+                    <div class="container character">
+                        <h5 class="center-align">Favorite<br />Characters</h5>
+                        <ul class="collection z-depth-1">
+                            <a href="#" class="deep-purple-text text-darken-4" target="_blank">
+                                <li class="collection-item avatar">
+                                    <i class="material-icons circle black">smoking_rooms</i>
+                                    <span class="title">Name: Crakas</span>
+                                    <p class="grey-text">Type: Half-Elf Ranger</p>
+                                </li>
+                            </a>
+                            <a href="#" class="deep-purple-text text-darken-4" target="_blank">
+                                <li class="collection-item avatar">
+                                    <i class="material-icons circle red">file_copy</i>
+                                    <span class="title">Name: Orc</span>
+                                    <p class="grey-text">Type: Orc Barbarian Template</p>
+                                </li>
+                            </a>
+                            <a href="c-char.html" class="deep-purple-text text-darken-4" target="_blank">
+                                <li class="collection-item avatar">
+                                    <i class="material-icons circle blue">add</i>
+                                    <span class="title">Create</span>
+                                    <p class="grey-text">Create a Character</p>
+                                </li>
+                            </a>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- Player section -->
+                <div class="col s12 m6 l4">
+                    <div class="container player">
+                        <h5 class="center-align"><br />Players</h5>
+                        <ul class="collection z-depth-1">
+                            <a href="#" class="deep-purple-text text-darken-4 modal-trigger" data-target="modal-me">
+                                <li class="collection-item avatar">
+                                    <img src="img/me.jpg" class="circle responsive-img">
+                                    <span class="title deep-purple-text text-darken-4">Name: </span><span class="grey-text">Paul Heintz</span>
+                                    <p class="grey-text"><span class="title deep-purple-text text-darken-4">Campaigns: </span>Eldritch Horror<br>Paul's Awesome Campaign</p>
+                                </li>
+                            </a>
+                            <a href="#" class="deep-purple-text text-darken-4 modal-trigger" data-target="modal-mike">
+                                <li class="collection-item avatar">
+                                    <img src="img/mike.jpg" class="circle responsive-img">
+                                    <span class="title deep-purple-text text-darken-4">Name: </span><span class="grey-text">Mike Sofio</span>
+                                    <p class="grey-text"><span class="title deep-purple-text text-darken-4">Campaigns: </span>Eldritch Horror</p>
+                                </li>
+                            </a>
+                            <a href="c-player.html" class="deep-purple-text text-darken-4" target="_blank">
+                                <li class="collection-item avatar">
+                                    <i class="material-icons circle blue">add</i>
+                                    <span class="title">Add</span>
+                                    <p class="grey-text">Add a Player</p>
+                                </li>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PLAYER MODALS -->
+            <div id="modal-me" class="modal">
+                <div class="modal-content center-align">
+                    <h4>Paul Heintz</h4><br />
+                    <div class="player-details">Put stuff about me here!</div>
+                </div>
+            </div>
+
+            <div id="modal-mike" class="modal">
+                <div class="modal-content center-align">
+                    <h4>Mike Sofio</h4><br />
+                    <div class="player-details">Put stuff about Mike here!</div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="page-footer grey darken-3">
+            <div class="footer-copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s12 m12 l12">
+                            <p class="center-align">&copy;2019 Paul Heintz Development<br /><a href="github.com">Roleplayer Character Nexus</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            // Modal script
+            $(document).ready(function() {
+                $('.modal').modal();
+            });
+        </script>
+
+<!--
+<main>
+    <div class="container center">
+    <img src="" alt="" style="width: 250px;" class="responsive-img">
+    <h5 class="deep-purple-text text-darken-4">Logged In!</h5>
+    <br />
+    <button class="btn deep-purple darken-4 waves-effect waves-light" id="logout">Logout</button>
+    </div>
+</main>
+-->
+
+    <!-- Firebase Modules -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-storage.js"></script>
+    <script src="init.js"></script>
+    <script src="scripts/auth.js"></script>
+
+  </body>
+</html>
