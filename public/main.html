@@ -12,6 +12,8 @@
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Default stylesheet -->
+    <link rel="stylesheet" href="css/default.css">
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <!-- Compiled and minified JavaScript -->
@@ -51,9 +53,47 @@
             <a href="#" class="deep-purple-text text-darken-4 modal-trigger" data-target="modal-account">Account</a>
         </li>
         <li class="logged-in" style="display: block;">
+            <a href="updateAcct.html" class="deep-purple-text text-darken-4">Update Profile</a>
+        </li>
+        <li class="logged-in" style="display: block;">
             <a href="#" class="deep-purple-text text-darken-4" id="logout-side">Logout</a>
         </li>
     </ul>
+
+    <!-- Main page body -->
+    <main class="container">
+        <div class="row">
+            <!-- Campaign Section -->
+            <div class="col s12 m6 l4">
+                <div class="container campaign">
+                    <h5 class="center-align">My<br />Campaigns</h5>
+                </div>
+            </div>
+
+            <!-- Character Section -->
+            <div class="col s12 m6 l4">
+                <div class="container character">
+                    <h5 class="center-align">Favorite<br />Characters</h5>
+                </div>
+            </div>
+
+            <!-- Player Section -->
+            <div class="col s12 m6 l4">
+                <div class="container player">
+                    <h5 class="center-align">Players</h5>
+                    <ul class="collection z-depth-1">
+                        <a href="addPlayer.html" class="deep-purple-text text-darken-4 admin">
+                            <li class="collection-item avatar">
+                                <i class="material-icons circle deep-purple darken-4">add</i>
+                                <span class="title">Add</span>
+                                <p class="grey-text">Add a player</p>
+                            </li>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <!-- Account Modal -->
     <div class="modal" id="modal-account">

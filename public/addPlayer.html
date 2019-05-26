@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Google material icons-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Default font -->
+    <link href="https://fonts.googleapis.com/css?family=ZCOOL+XiaoWei" rel="stylesheet">
+    <!-- favorite icon -->
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <style>
+        body {
+            font-family: 'ZCOOL XiaoWei';
+        }
+        .switch label input[type=checkbox]:checked+.lever {
+            background-color: #d1c4e9;
+        }
+        .switch label input[type=checkbox]:checked+.lever:after {
+            background-color: #311b92;
+        }
+    </style>
+    <title>Add a Player</title>
+</head>
+<body class="grey lighten-3" id="main-body" style="display: none;">
+    <div id="disable-ui"></div>
+
+    <!-- Navbar -->
+    <nav class="nav-wrapper z-depth-1 grey lighten-3">
+        <div class="container">
+            <a href="" class="brand-logo">
+                <img src="img/logo.png" alt="RCN logo" class="responsive-img" style="height: 1.8em;">
+            </a>
+            <a href="#" class="sidenav-trigger" data-target="mobile-links">
+                <i class="material-icons deep-purple-text text-darken-4">menu</i>
+            </a>
+            <ul class="right hide-on-med-and-down" id="nav-mobile">
+                <li class="logged-in" style="display: block;">
+                    <a href="main.html" class="deep-purple-text text-darken-4">Home</a>
+                </li>
+                <li class="logged-in" style="display: block;">
+                    <a href="#" class="deep-purple-text text-darken-4" id="logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile links -->
+    <ul class="sidenav" id="mobile-links">
+        <li class="logged-in" style="display: block;">
+            <a href="main.html" class="deep-purple-text text-darken-4">Home</a>
+        </li>
+        <li class="logged-in" style="display: block;">
+            <a href="updateAcct.html" class="deep-purple-text text-darken-4">Update Profile</a>
+        </li>
+        <li class="logged-in" style="display: block;">
+            <a href="#" class="deep-purple-text text-darken-4" id="logout-side">Logout</a>
+        </li>
+    </ul>
+
+    <br />
+    <main>
+        <div class="container center">
+            <h5 class="red-text darken-4">IMPORTANT!</h5>
+            <p class="red-text darken-4">
+                After creating a new user, you will be logged in as the new user and redirected to the update profile page. 
+                Please adjust any additional attributes if you'd like, then be sure to log out and log back in under your 
+                own credentials.
+            </p>
+
+            <!-- Make administrator switch -->
+            <div class="switch left-align">
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Make administrator? &nbsp;&nbsp;&nbsp;
+                <label>
+                    No
+                    <input type="checkbox" id="admin-cb">
+                    <span class="lever"></span>
+                    Yes
+                </label>
+                </p>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix deep-purple-text text-darken-4">email</i>
+                    <input type="email" class="validate" id="email" value="">
+                    <label for="email" class="active" id="email-lbl">New user's email address</label>
+                    <span class="helper-text" id="email-helper-text" data-success="Valid email!" data-error="Not a valid email address"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix deep-purple-text text-darken-4">lock</i>
+                    <input type="password" class="validate" id="password" value="">
+                    <label for="password" class="active" id="password-lbl">New user's temporary password</label>
+                    <span class="helper-text" id="password-helper-text" data-success="Valid password!" data-error="Password must be 6 or more characters."></span>
+                </div>
+            </div>
+            <!-- Show password switch -->
+            <div class="switch left-align">
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Show password? &nbsp;&nbsp;&nbsp;
+                <label>
+                    No
+                    <input type="checkbox" id="password-cb">
+                    <span class="lever"></span>
+                    Yes
+                </label>
+                </p>
+            </div>
+            <br />
+            <div class="row right-align">
+                <div class="col center s12 l4 offset-l8">
+                    <button class="btn waves-effect waves-light red darken-4" id="cancel-btn">Cancel</button>
+                    <button class="btn waves-effect waves-light deep-purple darken-4" id="create-btn" disabled>Create</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Firebase Modules -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-storage.js"></script>
+    <script src="init.js"></script>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/addPlayer.js"></script>
+
+</body>
+</html>

@@ -20,10 +20,33 @@
         body {
             font-family: 'ZCOOL XiaoWei';
         }
+        .switch label input[type=checkbox]:checked+.lever {
+            background-color: #d1c4e9;
+        }
+
+        .switch label input[type=checkbox]:checked+.lever:after {
+            background-color: #311b92;
+        }
+        .large-screen { display: none; }
+        @media (max-width: 600px) {
+            .small-screen { display: inline-block; }
+            .large-screen { display: none; }
+        }
+        #disable-ui {
+            display: none;
+            z-index: 1001;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.15);
+        }
     </style>
     <title>Update Account Information</title>
 </head>
 <body class="grey lighten-3" id="main-body" style="display: none;">
+    <div id="disable-ui"></div>
 
     <!-- Navbar -->
     <nav class="nav-wrapper z-depth-1 grey lighten-3">
@@ -59,41 +82,151 @@
     <section class="section container">
         <div class="row">
             <div class="col s12">
-                <form action="">
-                    <div class="input-field">
-                        <i class="material-icons prefix deep-purple-text text-darken-4">email</i>
-                        <input type="email" id="email">
-                        <label for="email" id="email-lbl">Your Email</label>
-                    </div>
-                    <div class="input-field">
-                        <i class="material-icons prefix deep-purple-text text-darken-4">account_circle</i>
-                        <input type="text" id="name">
-                        <label for="name" id="name-lbl">Display Name (your real name)</label>
-                    </div>
-                    <div class="file-field input-field">
-                        <div class="btn deep-purple darken-4">
-                            <span>File</span>
-                            <input type="file" id="file-button">
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" id="photo" placeholder="Upload new profile image" type="text">
-                        </div>
-                        <br />
-                        <div id="upload-status" style="display: none;">
-                            <div class="progress deep-purple lighten-4">
-                                <div class="determinate deep-purple darken-4" id="uploader" style="width: 0%"></div>
+                <div class="z-depth-3" style="background: white;">
+                    <div class="account-details">
+                        <br /><h6 class="center">Account Details</h6><br />
+                        <div class="row" style="margin: 2.5em;">
+                            <div class="col s12 m4">
+                                <img src="" id="profile-img" class="circle responsive-img">                    
+                                <div class="file-field input-field" id="file-cell">
+                                    <div class="btn deep-purple darken-4">
+                                        <span>File</span>
+                                        <input type="file" id="file-button">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" id="photo" placeholder="Upload new profile image" type="text">
+                                    </div>
+                                    <br />
+                                    <div id="upload-status" style="display: none;">
+                                        <div class="progress deep-purple lighten-4">
+                                            <div class="determinate deep-purple darken-4" id="uploader" style="width: 0%"></div>
+                                        </div>
+                                        <div class="center red-text" id="num-percent">0%</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col s12 center">
+                                        <button id="remove-btn" class="btn waves-effect waves-light red darken-4">Remove</button>
+                                        <button id="upload-btn" class="btn waves-effect waves-light deep-purple darken-4">Upload</button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="center red-text" id="num-percent">0%</div>
+                            <div class="col s12 m8">
+                                <!-- Switch -->
+                                <div class="switch">
+                                    <p>Change email? &nbsp;&nbsp;&nbsp;
+                                    <label>
+                                        No
+                                        <input type="checkbox" id="email-cb">
+                                        <span class="lever"></span>
+                                        Yes
+                                    </label>
+                                    </p>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix deep-purple-text text-darken-4">email</i>
+                                        <input type="email" class="validate" id="email" value="" disabled>
+                                        <label for="email" class="active" id="email-lbl">Email Address</label>
+                                        <span class="helper-text" id="email-helper-text" data-success="Valid email!" data-error="Not a valid email address"></span>
+                                    </div>
+                                </div>
+                                <div class="row" id="email-cell" style="display: none;">
+                                    <div class="input-field col s12 m10">
+                                        <i class="material-icons prefix deep-purple-text text-darken-4">email</i>
+                                        <input type="email" class="validate" id="email-conf">
+                                        <label for="email-conf" class="" id="email-conf-lbl">Confirm Email</label>
+                                        <span class="helper-text" id="email-conf-helper-text" data-success="Addresses match!" data-error="Email addresses do not match"></span>
+                                    </div>
+                                    <div class="input-field col s12 m2">
+                                        <button id="email-btn" class="btn waves-effect waves-light deep-purple darken-4" disabled>
+                                            <span class="large-screen">Update</span>
+                                            <span class="small-screen">Update Email</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- Switch -->
+                                <div class="switch">
+                                    <p>Change Password? &nbsp;&nbsp;&nbsp;
+                                    <label>
+                                        No
+                                        <input type="checkbox" id="password-cb">
+                                        <span class="lever"></span>
+                                        Yes
+                                    </label>
+                                    </p>
+                                </div>
+                                <div id="password-cell" style="display: none;">
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <i class="material-icons prefix deep-purple-text text-darken-4">lock</i>
+                                            <input type="password" class="validate" id="password">
+                                            <label for="password" id="password-lbl">Password</label>
+                                            <span class="helper-text" id="password-helper-text" data-error="Password must be 6 or more characters."></span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 m10">
+                                            <i class="material-icons prefix deep-purple-text text-darken-4">lock</i>
+                                            <input type="password" class="validate" id="password-conf">
+                                            <label for="password-conf" class="" id="password-conf-lbl">Confirm Password</label>
+                                            <span class="helper-text" id="password-conf-helper-text" data-error="Passwords do not match." data-success="Passwords match!"></span>
+                                        </div>
+                                        <div class="input-field col s12 m2">
+                                            <button id="password-btn" class="btn waves-effect waves-light deep-purple darken-4" disabled>
+                                                <span class="large-screen">Update</span>
+                                                <span class="small-screen">Update Password</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12 m10">
+                                        <i class="material-icons prefix deep-purple-text text-darken-4">account_circle</i>
+                                        <input type="text" id="name">
+                                        <label for="name" id="name-lbl">Display Name</label>
+                                        <span class="helper-text" id="name-helper-text" data-success="Display name successfully updated!" data-error="Could not update display name."></span>
+                                    </div>
+                                    <div class="input-field col s12 m2">
+                                        <button id="name-btn" class="btn waves-effect waves-light deep-purple darken-4">
+                                            <span class="large-screen">Update</span>
+                                            <span class="small-screen">Update Name</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="right-align">
-                        <button class="btn red darken-4 z-depth-0" id="cancel-acct">Cancel</button>
-                        <button class="btn deep-purple darken-4 z-depth-0" id="update-acct">Update</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- Account Modal -->
+    <div class="modal" id="reauthenticate-modal">
+        <div class="modal-content">
+            <h5 class="center">Re-authentication required.</h5>
+            <p id="reauth-header" class="center"></p>
+            <div class="row"> 
+                <div class="input-field col s12">
+                    <i class="material-icons prefix deep-purple-text text-darken-4">email</i>
+                    <input type="email" class="validate" id="reauth-email" value="">
+                    <label for="reauth-email" class="" id="reauth-email-lbl">Email Address</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix deep-purple-text text-darken-4">lock</i>
+                    <input type="password" id="reauth-password">
+                    <label for="reauth-password" id="reauth-password-lbl">Password</label>
+                </div>
+            </div>
+            <div class="right-align">
+                <button class="btn red darken-4 z-depth-0 modal-action modal-close">Cancel</button>
+                <button class="btn deep-purple darken-4 z-depth-0" id="reauth-btn">Reauthenticate</button>
+            </div>
+        </div>
+    </div>
 
 
     <!-- Firebase Modules -->
@@ -104,6 +237,7 @@
     <script src="init.js"></script>
     <script src="scripts/auth.js"></script>
     <!-- Page scripts -->
+    <script src="scripts/updateAcctUI.js"></script>
     <script src="scripts/updateAcct.js"></script>
     
 </body>

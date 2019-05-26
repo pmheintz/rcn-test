@@ -21,10 +21,7 @@ let passwordMatch = false;
  * @param info Object containing the updated info
  * @return Promise
  */
-const updateUser = (info) => {
-    // Get current user
-    let user = firebase.auth().currentUser; 
-
+const updateUser = (user, info) => {
     console.log('Updating user');
     return user.updateProfile(info).then(() => {
         console.log('Profile updated');
@@ -39,10 +36,7 @@ const updateUser = (info) => {
  * @param email The new email address
  * @return Promise 
  */
-const updateEmail = (email) => {
-    // Get current user
-    let user = firebase.auth().currentUser; 
-
+const updateEmail = (user, email) => {
     console.log('Updating email address');
     return user.updateEmail(email).then(() => {
         console.log('Email address updated');
@@ -57,10 +51,7 @@ const updateEmail = (email) => {
  * @param password The new password
  * @return Promise 
  */
-const updatePassword = (password) => {
-    // Get current user
-    let user = firebase.auth().currentUser; 
-
+const updatePassword = (user, password) => {
     console.log('Changing password');
     return user.updatePassword(password).then(() => {
         console.log('Password updated');
@@ -90,10 +81,7 @@ const verifyImage = (file) => {
  * @param user The user who's image will be deleted
  * @return Promise
  */
-const deleteImage = () => {
-    // Get current user
-    let user = firebase.auth().currentUser; 
-
+const deleteImage = (user) => {
     console.log('Deleting image.');
     // Get previous file extension
     let regex = /(?:\.([^.]+))?$/;
@@ -118,10 +106,7 @@ const deleteImage = () => {
  * @param photo The photo to upload
  * @return Promise
  */
-const uploadImage = (photo) => {
-    // Get current user
-    let user = firebase.auth().currentUser; 
-
+const uploadImage = (user, photo) => {
     // Create storage reference
     let storageRef = storage.ref('userImages/' + user.uid + '.' + photo.name.split('.').pop());
 
@@ -153,7 +138,7 @@ const uploadImage = (photo) => {
                     document.getElementById('num-percent').innerHTML = 'Upload Complete!';
                     console.log(downloadURL);
                     resolve(
-                        updateUser({photoURL: downloadURL}).then(() => {
+                        updateUser(user, {photoURL: downloadURL}).then(() => {
                             console.log('New image uploaded');
                         }).catch((err) => {
                             console.log('Error uploading image');
@@ -170,26 +155,18 @@ const uploadImage = (photo) => {
  */
 updateBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    let modal = document.querySelector('.modal');
-    let instance = M.Modal.init(modal);
-    instance.open();
-    // Get current user
-    let user = firebase.auth().currentUser; 
 
     // Create array of promises to be itterated over
     let promises = [];
+
+    // Get current user
+    let user = firebase.auth().currentUser; 
 
     // Get display name variable
     let name = (document.getElementById('name').value) ? document.getElementById('name').value : null;
 
     // Add updateUser to promises
-    promises.push(updateUser({displayName: name}));
-
-    // Add updatePassword if needed
-    if (passwordChk.checked) { promises.push(updatePassword(passwordField.value)); }
-
-    // Add updateEmail promise if needed
-    if (emailChk.checked) { promises.push(updateEmail(emailField.value)); }
+    promises.push(updateUser(user, {displayName: name}));
 
     // Check if a file has been selected
     if (document.getElementById('file-button').files[0]) {
@@ -198,26 +175,24 @@ updateBtn.addEventListener('click', (e) => {
             // File is an image. Check if previous image exists
             if (user.photoURL) {
                 // Previous image exists, push delete to promises
-                promises.push(deleteImage());
+                promises.push(deleteImage(user));
                 // Push promise to remove previous photoURL
-                promises.push(updateUser({photoURL: null}));
+                promises.push(updateUser(user, {photoURL: null}));
             }
             // Push promise to upload new image
-            promises.push(uploadImage(document.getElementById('file-button').files[0]));
+            promises.push(uploadImage(user, document.getElementById('file-button').files[0]));
         } else {
             // File is not an image
             alert('File selected is not an acceptable image.\nMake sure the file is jpeg, gif, png, bmp, or webp.');
         }
     }
 
-    // Testing
-    if (passwordChk.checked || emailChk.checked) {
-        alert('reauthenticate');
-    } else {
-        alert('Don\'t reauthenticate');
-    }
+    // Add updatePassword if needed
+    if (passwordChk.checked) { promises.push(updatePassword(user, passwordField.value)); }
 
-    /*
+    // Add updateEmail promise if needed
+    if (emailChk.checked) { promises.push(updateEmail(user, emailField.value)); }
+
     // All tasks should be checked, execute async tasks
     Promise.all(promises).then(() => {
         alert('Profile has been updated!');
@@ -225,7 +200,6 @@ updateBtn.addEventListener('click', (e) => {
     }).catch(() => {
         alert('An error occurred updating your profile.\n');
     })
-    */
 });
 
 // Email change checkbox event listener
@@ -345,9 +319,6 @@ const setupUI = (currentUser) => {
                 document.getElementById('email-lbl').classList.add('active');
                 let emailField = document.getElementById('email');
                 emailField.value = email;
-                document.getElementById('auth-email-lbl').classList.add('active');
-                let authEmailField = document.getElementById('auth-email');
-                authEmailField.value = email;
                 emailField.disabled = true;
             }
             if (displayName) {
@@ -363,9 +334,6 @@ const setupUI = (currentUser) => {
 
 // Mateirialize components
 document.addEventListener('DOMContentLoaded', function() {
-    var modals = document.querySelectorAll('.modal');
-    M.Modal.init(modals);
-
     var sidenav = document.querySelectorAll('.sidenav');
     M.Sidenav.init(sidenav);
 });
